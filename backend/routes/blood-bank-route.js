@@ -1,0 +1,74 @@
+import mongoose from "mongoose";
+
+const bloodbankSchema = new mongoose.Schema(
+  {
+    BloodBankName: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    ParentHospitalName: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    firstRegistrationDate: {
+      type: Number,
+      required: true,
+    },
+    LicenseNo: {
+      type: String,
+      required: true,
+    },
+    fromDate: {
+      type: Number,
+      required: true,
+    },
+    ToDate: {
+      type: String,
+      required: true,
+    },
+    contactPerson: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    contactPersonEmail: {
+      type: String,
+      required: true,
+    },
+    ContactNo: {
+      type: String,
+      required: true,
+    },
+    state: {
+      type: String,
+      required: true,
+    },
+    district: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: Number,
+      required: true,
+    },
+    address: {
+      type: Number,
+      required: true,
+    },
+    pincode: {
+      type: Number,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+const BloodBank = mongoose.model("BloodBank", bloodbankSchema);
+
+export default BloodBank;
