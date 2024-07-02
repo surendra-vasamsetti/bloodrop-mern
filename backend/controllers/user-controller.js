@@ -32,7 +32,7 @@ const userRegister = async (req, res) => {
     const userEmail = await User.findOne({ email });
     const userMobile = await User.findOne({ mobileNo });
     if (existingUser) {
-      return res.status(400).json({ message: "Username already exists" });
+      return res.status(400).json({ message: "user already exists" });
     }
     if (userEmail) {
       return res.status(400).json({ message: "user already exist" });

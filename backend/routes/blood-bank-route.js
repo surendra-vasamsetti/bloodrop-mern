@@ -1,74 +1,13 @@
-import mongoose from "mongoose";
+import {
+  bloodBankRegister,
+  bloodBankLogin,
+} from "../controllers/blood-bank-controller.js";
 
-const bloodbankSchema = new mongoose.Schema(
-  {
-    BloodBankName: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    ParentHospitalName: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    firstRegistrationDate: {
-      type: Number,
-      required: true,
-    },
-    LicenseNo: {
-      type: String,
-      required: true,
-    },
-    fromDate: {
-      type: Number,
-      required: true,
-    },
-    ToDate: {
-      type: String,
-      required: true,
-    },
-    contactPerson: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    contactPersonEmail: {
-      type: String,
-      required: true,
-    },
-    ContactNo: {
-      type: String,
-      required: true,
-    },
-    state: {
-      type: String,
-      required: true,
-    },
-    district: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: Number,
-      required: true,
-    },
-    address: {
-      type: Number,
-      required: true,
-    },
-    pincode: {
-      type: Number,
-      required: true,
-    },
-  },
-  { timestamps: true }
-);
+import express from "express";
 
-const BloodBank = mongoose.model("BloodBank", bloodbankSchema);
+const router = express.Router();
 
-export default BloodBank;
+router.post("/register", bloodBankRegister);
+router.post("/login", bloodBankLogin);
+
+export default router;
