@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const AdminRegister = () => {
   const [formData, setFormData] = useState({
-    contactPersonEmail: "",
+    Name: "",
+    email: "",
     password: "",
-    contactNo: "",
   });
 
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:4000/bloodbank/login", {
+      const res = await fetch("http://localhost:4000/admin/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,11 +28,11 @@ const Login = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Login failed");
+        throw new Error(data.error || "Registration failed");
       }
 
-      alert("Login successful!");
-      navigate("/profile");
+      alert("Registration successful!");
+      navigate("/admin/login");
     } catch (error) {
       alert(error.message);
       console.error("Error:", error);
@@ -41,15 +41,24 @@ const Login = () => {
 
   return (
     <div className="max-w-lg p-3 mx-auto flex flex-col justify-center text-center">
-      <h1 className="text-center text-3xl font-semibold">BLOOD-BANK SIGN IN</h1>
+      <h1 className="text-center text-3xl font-semibold">ADMIN REGISTER</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
-          type="email"
-          placeholder="Enter your contact person email"
-          id="contactPersonEmail"
-          value={formData.contactPersonEmail}
+          type="text"
+          placeholder="Enter your name"
+          id="Name"
+          value={formData.Name}
           onChange={handleChange}
           className="bg-gray-200 rounded-lg p-3 mt-7"
+          required
+        />
+        <input
+          type="email"
+          placeholder="Enter your email"
+          id="email"
+          value={formData.email}
+          onChange={handleChange}
+          className="bg-gray-200 rounded-lg p-3 mt-5"
           required
         />
         <input
@@ -61,27 +70,18 @@ const Login = () => {
           className="bg-gray-200 rounded-lg p-3 mt-5"
           required
         />
-        <input
-          type="text"
-          placeholder="Enter your contact number"
-          id="contactNo"
-          value={formData.contactNo}
-          onChange={handleChange}
-          className="bg-gray-200 rounded-lg p-3 mt-5"
-          required
-        />
         <button className="bg-red-500 p-3 rounded-lg text-white" type="submit">
-          SIGN IN
+          REGISTER
         </button>
       </form>
       <div className="flex gap-5 mt-2">
-        <p>Don't have an account?</p>
-        <Link to="/bbregister">
-          <span className="text-red-500 font-semibold">Register</span>
+        <p>Already have an account?</p>
+        <Link to="/adminlogin">
+          <span className="text-red-500 font-semibold">Login</span>
         </Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default AdminRegister;

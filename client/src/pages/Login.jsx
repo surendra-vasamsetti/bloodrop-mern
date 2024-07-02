@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
     <div className="max-w-lg p-3 mx-auto flex flex-col justify-center text-center">
-      <h1 className="text-center text-3xl font-semibold">SIGN IN</h1>
+      <h1 className="text-center text-3xl font-semibold">DONAR SIGN IN</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
           type="email"

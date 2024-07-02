@@ -1,18 +1,19 @@
-
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
+    BloodBankName: "",
+    ParentHospitalName: "",
     password: "",
-    age: "",
-    gender: "",
-    fathername: "",
-    mothername: "",
-    mobileNo: "",
+    category: "",
+    firstRegistrationDate: "",
+    LicenseNo: "",
+    fromDate: "",
+    ToDate: "",
+    contactPerson: "",
+    contactPersonEmail: "",
+    contactNo: "",
     state: "",
     district: "",
     city: "",
@@ -33,13 +34,13 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateMobileNumber(formData.mobileNo)) {
-      setErrors({ mobileNo: "Please enter a valid 10-digit mobile number" });
+    if (!validateMobileNumber(formData.contactNo)) {
+      setErrors({ contactNo: "Please enter a valid 10-digit contact number" });
       return;
     }
 
     try {
-      const res = await fetch("http://localhost:4000/user/register", {
+      const res = await fetch("http://localhost:4000/bloodbank/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,21 +51,24 @@ const Register = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || errors)
+        throw new Error(data.message || errors);
       }
 
       console.log(data);
 
       // Clear the form fields after successful submission
       setFormData({
-        username: "",
-        email: "",
+        BloodBankName: "",
+        ParentHospitalName: "",
         password: "",
-        age: "",
-        gender: "",
-        fathername: "",
-        mothername: "",
-        mobileNo: "",
+        category: "",
+        firstRegistrationDate: "",
+        LicenseNo: "",
+        fromDate: "",
+        ToDate: "",
+        contactPerson: "",
+        contactPersonEmail: "",
+        contactNo: "",
         state: "",
         district: "",
         city: "",
@@ -72,12 +76,12 @@ const Register = () => {
         pincode: "",
       });
 
-      alert("User registered successfully!");
+      alert("Blood bank registered successfully!");
       navigate("/login");
     } catch (error) {
       if (error.message.includes("Mobile number already exists")) {
         setErrors({
-          mobileNo: "Mobile number already exists, please use another number",
+          contactNo: "Contact number already exists, please use another number",
         });
       } else {
         alert(error.message);
@@ -88,52 +92,36 @@ const Register = () => {
 
   return (
     <div className="max-w-4xl p-3 mx-auto flex flex-col justify-center text-center">
-      <h1 className="text-center text-3xl font-semibold">USER/DONAR SIGN UP</h1>
+      <h1 className="text-center text-3xl font-semibold">Blood Bank Sign Up</h1>
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 max-w-4xl p-5 mx-auto"
       >
         <div>
-          <label htmlFor="username" className="block text-left mb-1">
-            Username
+          <label htmlFor="BloodBankName" className="block text-left mb-1">
+            Blood Bank Name
           </label>
           <input
             type="text"
-            placeholder="Enter your username"
-            id="username"
-            value={formData.username}
+            placeholder="Enter blood bank name"
+            id="BloodBankName"
+            value={formData.BloodBankName}
             onChange={handleChange}
             className="bg-gray-200 rounded-lg p-3 w-full"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-left mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="bg-gray-200 rounded-lg p-3 w-full"
-          />
-        </div>
-        <div>
-          <label htmlFor="mobileNo" className="block text-left mb-1">
-            Mobile Number
+          <label htmlFor="ParentHospitalName" className="block text-left mb-1">
+            Parent Hospital Name
           </label>
           <input
             type="text"
-            placeholder="Enter your mobile number"
-            id="mobileNo"
-            value={formData.mobileNo}
+            placeholder="Enter parent hospital name"
+            id="ParentHospitalName"
+            value={formData.ParentHospitalName}
             onChange={handleChange}
             className="bg-gray-200 rounded-lg p-3 w-full"
           />
-          {errors.mobileNo && (
-            <p className="text-red-500 text-left">{errors.mobileNo}</p>
-          )}
         </div>
         <div>
           <label htmlFor="password" className="block text-left mb-1">
@@ -141,7 +129,7 @@ const Register = () => {
           </label>
           <input
             type="password"
-            placeholder="Enter your password"
+            placeholder="Enter password"
             id="password"
             value={formData.password}
             onChange={handleChange}
@@ -149,56 +137,114 @@ const Register = () => {
           />
         </div>
         <div>
-          <label htmlFor="age" className="block text-left mb-1">
-            Age
+          <label htmlFor="category" className="block text-left mb-1">
+            Category
           </label>
           <input
-            type="number"
-            placeholder="Enter your age"
-            id="age"
-            value={formData.age}
+            type="text"
+            placeholder="Enter category"
+            id="category"
+            value={formData.category}
             onChange={handleChange}
             className="bg-gray-200 rounded-lg p-3 w-full"
           />
         </div>
         <div>
-          <label htmlFor="gender" className="block text-left mb-1">
-            Gender
+          <label
+            htmlFor="firstRegistrationDate"
+            className="block text-left mb-1"
+          >
+            First Registration Date
           </label>
           <input
             type="text"
-            placeholder="Enter your gender"
-            id="gender"
-            value={formData.gender}
+            placeholder="Enter first registration date"
+            id="firstRegistrationDate"
+            value={formData.firstRegistrationDate}
             onChange={handleChange}
             className="bg-gray-200 rounded-lg p-3 w-full"
           />
         </div>
         <div>
-          <label htmlFor="fathername" className="block text-left mb-1">
-            Father's Name
+          <label htmlFor="LicenseNo" className="block text-left mb-1">
+            License No
           </label>
           <input
             type="text"
-            placeholder="Enter your father's name"
-            id="fathername"
-            value={formData.fathername}
+            placeholder="Enter license number"
+            id="LicenseNo"
+            value={formData.LicenseNo}
             onChange={handleChange}
             className="bg-gray-200 rounded-lg p-3 w-full"
           />
         </div>
         <div>
-          <label htmlFor="mothername" className="block text-left mb-1">
-            Mother's Name
+          <label htmlFor="fromDate" className="block text-left mb-1">
+            From Date
           </label>
           <input
             type="text"
-            placeholder="Enter your mother's name"
-            id="mothername"
-            value={formData.mothername}
+            placeholder="Enter from date"
+            id="fromDate"
+            value={formData.fromDate}
             onChange={handleChange}
             className="bg-gray-200 rounded-lg p-3 w-full"
           />
+        </div>
+        <div>
+          <label htmlFor="ToDate" className="block text-left mb-1">
+            To Date
+          </label>
+          <input
+            type="text"
+            placeholder="Enter to date"
+            id="ToDate"
+            value={formData.ToDate}
+            onChange={handleChange}
+            className="bg-gray-200 rounded-lg p-3 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="contactPerson" className="block text-left mb-1">
+            Contact Person
+          </label>
+          <input
+            type="text"
+            placeholder="Enter contact person"
+            id="contactPerson"
+            value={formData.contactPerson}
+            onChange={handleChange}
+            className="bg-gray-200 rounded-lg p-3 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="contactPersonEmail" className="block text-left mb-1">
+            Contact Person Email
+          </label>
+          <input
+            type="email"
+            placeholder="Enter contact person email"
+            id="contactPersonEmail"
+            value={formData.contactPersonEmail}
+            onChange={handleChange}
+            className="bg-gray-200 rounded-lg p-3 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="contactNo" className="block text-left mb-1">
+            Contact No
+          </label>
+          <input
+            type="text"
+            placeholder="Enter contact number"
+            id="contactNo"
+            value={formData.contactNo}
+            onChange={handleChange}
+            className="bg-gray-200 rounded-lg p-3 w-full"
+          />
+          {errors.contactNo && (
+            <p className="text-red-500 text-left">{errors.contactNo}</p>
+          )}
         </div>
         <div>
           <label htmlFor="state" className="block text-left mb-1">
@@ -206,7 +252,7 @@ const Register = () => {
           </label>
           <input
             type="text"
-            placeholder="Enter your state"
+            placeholder="Enter state"
             id="state"
             value={formData.state}
             onChange={handleChange}
@@ -219,7 +265,7 @@ const Register = () => {
           </label>
           <input
             type="text"
-            placeholder="Enter your district"
+            placeholder="Enter district"
             id="district"
             value={formData.district}
             onChange={handleChange}
@@ -232,7 +278,7 @@ const Register = () => {
           </label>
           <input
             type="text"
-            placeholder="Enter your city"
+            placeholder="Enter city"
             id="city"
             value={formData.city}
             onChange={handleChange}
@@ -245,7 +291,7 @@ const Register = () => {
           </label>
           <input
             type="text"
-            placeholder="Enter your address"
+            placeholder="Enter address"
             id="address"
             value={formData.address}
             onChange={handleChange}
@@ -257,8 +303,8 @@ const Register = () => {
             Pincode
           </label>
           <input
-            type="number"
-            placeholder="Enter your pincode"
+            type="text"
+            placeholder="Enter pincode"
             id="pincode"
             value={formData.pincode}
             onChange={handleChange}
@@ -274,13 +320,12 @@ const Register = () => {
       </form>
       <div className="flex gap-5 mt-2">
         <p>Already have an account?</p>
-        <Link to="/login">
+        <Link to="/bblogin">
           <span className="text-red-500 font-semibold">Sign In</span>
         </Link>
       </div>
     </div>
   );
-
 };
 
 export default Register;

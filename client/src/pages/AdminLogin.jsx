@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const AdminLogin = () => {
   const [formData, setFormData] = useState({
-    contactPersonEmail: "",
+    email: "",
     password: "",
-    contactNo: "",
   });
 
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:4000/bloodbank/login", {
+      const res = await fetch("http://localhost:4000/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +31,7 @@ const Login = () => {
       }
 
       alert("Login successful!");
-      navigate("/profile");
+      navigate("/admin/dashboard");
     } catch (error) {
       alert(error.message);
       console.error("Error:", error);
@@ -41,13 +40,13 @@ const Login = () => {
 
   return (
     <div className="max-w-lg p-3 mx-auto flex flex-col justify-center text-center">
-      <h1 className="text-center text-3xl font-semibold">BLOOD-BANK SIGN IN</h1>
+      <h1 className="text-center text-3xl font-semibold">ADMIN LOGIN</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
           type="email"
-          placeholder="Enter your contact person email"
-          id="contactPersonEmail"
-          value={formData.contactPersonEmail}
+          placeholder="Enter your email"
+          id="email"
+          value={formData.email}
           onChange={handleChange}
           className="bg-gray-200 rounded-lg p-3 mt-7"
           required
@@ -61,22 +60,13 @@ const Login = () => {
           className="bg-gray-200 rounded-lg p-3 mt-5"
           required
         />
-        <input
-          type="text"
-          placeholder="Enter your contact number"
-          id="contactNo"
-          value={formData.contactNo}
-          onChange={handleChange}
-          className="bg-gray-200 rounded-lg p-3 mt-5"
-          required
-        />
         <button className="bg-red-500 p-3 rounded-lg text-white" type="submit">
-          SIGN IN
+          LOGIN
         </button>
       </form>
       <div className="flex gap-5 mt-2">
         <p>Don't have an account?</p>
-        <Link to="/bbregister">
+        <Link to="/adminregister">
           <span className="text-red-500 font-semibold">Register</span>
         </Link>
       </div>
@@ -84,4 +74,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

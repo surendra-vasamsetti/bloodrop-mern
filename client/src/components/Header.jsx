@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
@@ -109,7 +107,8 @@ const Header = ({
                 </button>
                 <button
                   onClick={() => {
-                    scrollToSection(bloodBankRef);
+                    navigate("/bbregister");
+                    // scrollToSection(bloodBankRef);
                     setIsSignupDropdownOpen(false);
                   }}
                   className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left"
@@ -118,7 +117,8 @@ const Header = ({
                 </button>
                 <button
                   onClick={() => {
-                    scrollToSection(adminRef);
+                    // scrollToSection(adminRef);
+                    navigate("/adminregister");
                     setIsSignupDropdownOpen(false);
                   }}
                   className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left"
@@ -148,7 +148,8 @@ const Header = ({
                 </button>
                 <button
                   onClick={() => {
-                    scrollToSection(bloodBankRef);
+                    // scrollToSection(bloodBankRef);
+                    navigate("/bblogin");
                     setIsSigninDropdownOpen(false);
                   }}
                   className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left"
@@ -157,7 +158,8 @@ const Header = ({
                 </button>
                 <button
                   onClick={() => {
-                    scrollToSection(adminRef);
+                    // scrollToSection(adminRef);
+                    navigate("/adminlogin");
                     setIsSigninDropdownOpen(false);
                   }}
                   className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left"
