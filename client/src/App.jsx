@@ -10,21 +10,30 @@ import BloodBankRegister from "./pages/BloodBankRegister";
 import BloodBankLogin from "./pages/BloodBankLogin";
 import AdminRegister from "./pages/AdminRegister";
 import AdminLogin from "./pages/AdminLogin";
+import DashBanks from "./components/goccomponents/DashBanks";
+import DashMain from "./components/goccomponents/DashMain";
+import GovBloodBankTable from "./components/goccomponents/GovBankTable";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/bbregister" element={<BloodBankRegister />}></Route>
-        <Route path="/bblogin" element={<BloodBankLogin />}></Route>
-        <Route path="/adminregister" element={<AdminRegister />}></Route>
-        <Route path="/adminlogin" element={<AdminLogin />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/bbregister" element={<BloodBankRegister />} />
+        <Route path="/bblogin" element={<BloodBankLogin />} />
+        <Route path="/adminregister" element={<AdminRegister />} />
+        <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/dashmain" element={<DashMain />} />
+        <Route path="/banks" element={<DashBanks />} />
+        <Route
+          path="/bloodbank-table/:category"
+          element={<GovBloodBankTable />}
+        />
       </Routes>
     </BrowserRouter>
   );

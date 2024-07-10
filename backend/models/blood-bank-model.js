@@ -20,6 +20,7 @@ const bloodbankSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
+      enum: ["Government", "Private", "Red Cross"],
     },
     firstRegistrationDate: {
       type: Number,
@@ -67,6 +68,14 @@ const bloodbankSchema = new mongoose.Schema(
       required: true,
     },
     pincode: {
+      type: Number,
+      required: true,
+    },
+    latitude: {
+      type: Number,
+      required: true,
+    },
+    longitude: {
       type: Number,
       required: true,
     },
