@@ -5,6 +5,7 @@ import userRegisterRoute from "./routes/user-route.js";
 import bloodBankRegisterRoute from "./routes/blood-bank-route.js";
 import adminRegisterRoute from "./routes/admin-route.js";
 import requestUserRoute from "./routes/request-route.js";
+import allocateUserRoute from "./routes/allocate-route.js";
 import cors from "cors";
 
 dotenv.config();
@@ -17,7 +18,8 @@ app.use(cors()); // Enable CORS for all routes, adjust origin in production
 app.use("/user", userRegisterRoute);
 app.use("/bloodbank", bloodBankRegisterRoute);
 app.use("/admin", adminRegisterRoute);
-app.use("/request",requestUserRoute)
+app.use("/request", requestUserRoute);
+app.use("/allocate", allocateUserRoute);
 
 app.listen(4000, () => {
   console.log("server running at port 4000");
