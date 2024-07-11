@@ -79,6 +79,10 @@ const bloodbankSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    certificates: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

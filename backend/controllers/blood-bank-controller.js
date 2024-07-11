@@ -172,6 +172,7 @@ const bloodBankRegister = async (req, res) => {
       pincode,
       latitude,
       longitude,
+      certificates: "images/" + req.file.filename,
     });
     await newBloodBank.save();
 

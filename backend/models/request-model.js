@@ -44,10 +44,11 @@ const RequestSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+   
   },
   { timestamps: true }
 );
 
 const requestUser = mongoose.model("requestUser", RequestSchema);
 
-export default requestUser
+export default requestUser;

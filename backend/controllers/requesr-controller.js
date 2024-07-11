@@ -16,25 +16,12 @@ const RequestUser = async (req, res) => {
     state,
     district,
     city,
-    certificates,
+    
   } = req.body;
   if (mobileNo.length !== 10) {
     return res.status(400).json({ message: "Mobile number must be 10 digits" });
   }
   try {
-    // const existingUser = await User.findOne({ username });
-    // const userEmail = await User.findOne({ email });
-    // const userMobile = await User.findOne({ mobileNo });
-    // if (existingUser) {
-    //   return res.status(400).json({ message: "user already exists" });
-    // }
-    // if (userEmail) {
-    //   return res.status(400).json({ message: "user already exist" });
-    // }
-    // if (userMobile) {
-    //   return res.status(400).json({ message: "Mobile number already exists" });
-    // }
-
     const newRequestUser = new requestUser({
       username,
       email,
@@ -44,7 +31,7 @@ const RequestUser = async (req, res) => {
       state,
       district,
       city,
-      certificates,
+      certificates: "images/" + req.file.filename,
     });
     await newRequestUser.save();
 
@@ -53,10 +40,9 @@ const RequestUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      success:false,
-      message:"internal server error",
-      error:error.message
-
+      success: false,
+      message: "internal server error",
+      error: error.message,
     });
   }
 };
