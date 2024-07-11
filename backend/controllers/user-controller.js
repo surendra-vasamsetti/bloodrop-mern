@@ -46,7 +46,6 @@ const userRegister = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-
       age,
       gender,
       fathername,
@@ -57,6 +56,7 @@ const userRegister = async (req, res) => {
       city,
       address,
       pincode,
+      image: "images/" + req.file.filename,
     });
     await newUser.save();
 
